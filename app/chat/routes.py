@@ -1,11 +1,11 @@
 from fastapi import APIRouter, Body, HTTPException, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, and_, desc
-from database_sql import get_db
-from models_sql import ChatSession as SQLChatSession, Message as SQLMessage, MoodHistory as SQLMoodHistory
-from chat.service import process_chat
-from safety.risk_classifier import classify_risk
-from safety.intervention import get_intervention
+from app.database_sql import get_db
+from app.models_sql import ChatSession as SQLChatSession, Message as SQLMessage, MoodHistory as SQLMoodHistory
+from app.chat.service import process_chat
+from app.safety.risk_classifier import classify_risk
+from app.safety.intervention import get_intervention
 from pydantic import BaseModel
 from typing import Optional
 from datetime import datetime, timedelta
@@ -214,7 +214,7 @@ async def get_heatmap_analytics(user_id: int, db: AsyncSession = Depends(get_db)
 
 @router.get("/insights/{user_id}")
 async def get_user_insights(user_id: int):
-    from emotion.mood_analyzer import get_advanced_insights
+    from app.emotion.mood_analyzer import get_advanced_insights
     try:
         insights = await get_advanced_insights(user_id)
         return insights

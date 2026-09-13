@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Body, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from database_sql import get_db
-from journal.service import save_journal_entry, get_user_journals
+from app.database_sql import get_db
+from app.journal.service import save_journal_entry, get_user_journals
 from pydantic import BaseModel
 
 router = APIRouter()

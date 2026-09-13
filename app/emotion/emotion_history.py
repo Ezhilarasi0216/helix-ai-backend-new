@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy import select, update, and_
-from database_sql import async_session
-from models_sql import MoodHistory as SQLMoodHistory
+from app.database_sql import async_session
+from app.models_sql import MoodHistory as SQLMoodHistory
 
 async def save_daily_mood(user_id: int, emotions: dict):
     """

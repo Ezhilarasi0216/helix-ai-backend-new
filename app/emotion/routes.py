@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel
-from emotion.mood_analyzer import generate_weekly_mood_summary
-from emotion.emotion_history import get_mood_trend
-from emotion.text_emotion import analyze_text_emotion
+from app.emotion.mood_analyzer import generate_weekly_mood_summary
+from app.emotion.emotion_history import get_mood_trend
+from app.emotion.text_emotion import analyze_text_emotion
 from sqlalchemy.ext.asyncio import AsyncSession
-from database_sql import get_db
+from app.database_sql import get_db
 
 router = APIRouter()
 
@@ -40,6 +40,6 @@ async def get_user_clinician_note(user_id: int):
     """
     Retrieves a formal clinician's note for the user.
     """
-    from emotion.mood_analyzer import generate_clinician_note
+    from app.emotion.mood_analyzer import generate_clinician_note
     note = await generate_clinician_note(user_id)
     return {"note": note}

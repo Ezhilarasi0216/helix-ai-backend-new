@@ -2,8 +2,8 @@ import os
 import json
 import httpx
 from sqlalchemy import select, desc
-from database_sql import async_session
-from models_sql import UserMemory as SQLUserMemory
+from app.database_sql import async_session
+from app.models_sql import UserMemory as SQLUserMemory
 from datetime import datetime
 import logging
 
@@ -21,7 +21,7 @@ async def call_groq(prompt: str, json_format: bool = True):
                     "Content-Type": "application/json"
                 },
                 json={
-                    "model": "llama-3.3-70b-versatile",
+                    "model": "openai/gpt-oss-120b",
                     "messages": [{"role": "user", "content": prompt}]
                 }
             )

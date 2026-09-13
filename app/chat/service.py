@@ -1,18 +1,19 @@
 import os
+from urllib import response
 import httpx
 import json
 import asyncio
 from datetime import datetime
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, desc
-from models_sql import ChatSession as SQLChatSession, Message as SQLMessage, UserProfile as SQLUserProfile
-from emotion.text_emotion import analyze_text_emotion
+from app.models_sql import ChatSession as SQLChatSession, Message as SQLMessage, UserProfile as SQLUserProfile
+from app.emotion.text_emotion import analyze_text_emotion
 from dotenv import load_dotenv
-from memory.memory_service import extract_and_save_facts, get_relevant_memories
-from emotion.emotion_history import save_daily_mood
-from safety.crisis_detector import detect_crisis
-from safety.ethical_filter import ethical_filter_response
-from safety.helpline_service import get_helpline_info
+from app.memory.memory_service import extract_and_save_facts, get_relevant_memories
+from app.emotion.emotion_history import save_daily_mood
+from app.safety.crisis_detector import detect_crisis
+from app.safety.ethical_filter import ethical_filter_response
+from app.safety.helpline_service import get_helpline_info
 from groq import Groq
 import logging
 
@@ -136,7 +137,7 @@ async def process_chat(user_id: Any, message_text: str, session_id: int = None, 
             raise ValueError("GROQ_API_KEY not found in environment")
             
         content = None
-        models = ["llama-3.3-70b-versatile", "llama3-70b-8192", "mixtral-8x7b-32768"]
+        models = ["openai/gpt-oss-120b"]
         
         for model_name in models:
             if content: break
@@ -155,6 +156,20 @@ async def process_chat(user_id: Any, message_text: str, session_id: int = None, 
                             "response_format": {"type": "json_object"}
                         }
                     )
+                    response = await client_http.post(
+    "https://api.groq.com/openai/v1/chat/completions",
+    headers={
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    },
+    json={
+        "model": model_name,
+        "messages": groq_history,
+        "response_format": {"type": "json_object"}
+    }
+)
+                    print("GROQ STATUS:", response.status_code)
+                    print("GROQ RESPONSE:", response.text)
 
                     if response.status_code == 200:
                         content = response.json()['choices'][0]['message']['content']

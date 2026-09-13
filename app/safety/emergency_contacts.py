@@ -1,8 +1,8 @@
 from fastapi import APIRouter, HTTPException, Body, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, update, delete
-from database_sql import get_db
-from models_sql import EmergencyContact as SQLEmergencyContact
+from app.database_sql import get_db
+from app.models_sql import EmergencyContact as SQLEmergencyContact
 from pydantic import BaseModel
 from typing import List, Optional
 from datetime import datetime

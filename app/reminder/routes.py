@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Body, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
-from database_sql import get_db
-from memory.reminder_service import create_reminder, get_pending_reminders, mark_reminder_completed
+from app.database_sql import get_db
+from app.memory.reminder_service import create_reminder, get_pending_reminders, mark_reminder_completed
 from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional

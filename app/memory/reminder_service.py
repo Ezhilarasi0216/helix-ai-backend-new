@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, update
-from models_sql import Reminder as SQLReminder
+from app.models_sql import Reminder as SQLReminder
 
 async def create_reminder(user_id: int, text: str, due_date: datetime, db: AsyncSession):
     """

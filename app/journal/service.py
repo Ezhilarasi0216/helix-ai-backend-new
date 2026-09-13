@@ -2,7 +2,7 @@ import os
 from groq import Groq
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from models_sql import JournalEntry as SQLJournalEntry
+from app.models_sql import JournalEntry as SQLJournalEntry
 from datetime import datetime
 from dotenv import load_dotenv
 import logging

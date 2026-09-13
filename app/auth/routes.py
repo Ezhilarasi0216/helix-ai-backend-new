@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException, status, Body, UploadFile, File, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
-from database_sql import get_db
-from models_sql import User as SQLUser
-from auth.utils import get_password_hash, verify_password
+from app.database_sql import get_db
+from app.models_sql import User as SQLUser
+from app.auth.utils import get_password_hash, verify_password
 from pydantic import EmailStr, BaseModel
 from typing import Optional
 import os

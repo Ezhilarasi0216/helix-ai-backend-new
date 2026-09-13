@@ -2,8 +2,8 @@ from fastapi import APIRouter, HTTPException, UploadFile, File, Body, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from sqlalchemy.orm import joinedload
-from database_sql import get_db
-from models_sql import UserProfile as SQLUserProfile, User as SQLUser
+from app.database_sql import get_db
+from app.models_sql import UserProfile as SQLUserProfile, User as SQLUser
 from pydantic import BaseModel
 from typing import Optional
 from datetime import date, datetime
