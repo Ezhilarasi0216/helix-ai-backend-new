@@ -136,7 +136,7 @@ async def process_chat(user_id: Any, message_text: str, session_id: int = None, 
             raise ValueError("GROQ_API_KEY not found in environment")
             
         content = None
-        models = ["llama-3.3-70b-versatile", "llama3-70b-8192", "mixtral-8x7b-32768"]
+        models = ["openai/gpt-oss-120b", "llama3-70b-8192", "mixtral-8x7b-32768"]
         
         for model_name in models:
             if content: break
