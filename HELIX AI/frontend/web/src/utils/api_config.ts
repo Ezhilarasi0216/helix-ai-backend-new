@@ -17,7 +17,7 @@ export const BACKEND_PORT = '10000';
 // Construct the base API URL
 // If accessed via fixed IP on a network, it will use that IP.
 // If accessed via localhost, it uses localhost.
-export const API_BASE_URL = `https://helix-ai-chatpot.onrender.com`;
+export const API_BASE_URL = `https://helix-ai-backend-new-1.onrender.com`;
 
 // Function to get full URL with prefix
 export const getApiUrl = (path: string): string => {
