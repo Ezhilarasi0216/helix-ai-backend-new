@@ -8,7 +8,7 @@ interface ChatResponse {
    }
 }
 
-const API_BASE_URL = 'http://127.0.0.1:8003';
+const API_BASE_URL = 'https://helix-ai-backend-new-1.onrender.com';
 
 export const apiService = {
    async login(email: string, password: string) {
