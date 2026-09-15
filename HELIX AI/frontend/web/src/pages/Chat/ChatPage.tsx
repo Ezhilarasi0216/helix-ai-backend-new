@@ -418,8 +418,7 @@ export const ChatbotPage: React.FC = () => {
 
          if (data.metadata?.emotion) {
             updateEmotions(data.metadata.emotion);
-            const suggestion = suggestCBTExercise(data.metadata.emotion);
-            if (suggestion) setSuggestedExercise(suggestion);
+            
          }
 
          if (data.metadata?.wellness_score !== undefined) {
@@ -503,22 +502,7 @@ export const ChatbotPage: React.FC = () => {
             onPitchChange={handlePitchChange}
          />
 
-         {suggestedExercise && !activeExercise && (
-            <SuggestionOverlay>
-               <SuggestionCard>
-                  <SuggestionText>
-                     <strong>{suggestedExercise.title} Recommended</strong>
-                     <p>{suggestedExercise.description}</p>
-                  </SuggestionText>
-                  <SuggestionActions>
-                     <SuggestionButton onClick={() => setSuggestedExercise(null)}>Dismiss</SuggestionButton>
-                     <SuggestionButton $primary onClick={() => setActiveExercise(suggestedExercise)}>
-                        Start Guided Session
-                     </SuggestionButton>
-                  </SuggestionActions>
-               </SuggestionCard>
-            </SuggestionOverlay>
-         )}
+        
 
          {activeExercise && (
             <GuidedExerciseOverlay
